@@ -3,7 +3,7 @@ import sys
 from qiskit import QuantumCircuit, QuantumProgram
 import Qconfig
 
-from plot_histogram_local import *
+from plot_histogram_file import *
 
 program = QuantumProgram()
 n = 3  # number of qubits 
@@ -31,5 +31,5 @@ circuits = ['ghz', 'superposition']
 backend = 'local_qasm_simulator'
 result = program.execute(circuits, backend=backend, shots=1000, silent = True)
 
-plot_histogram_local('result1.svg', result.get_counts('ghz'))
-plot_histogram_local('result2.svg', result.get_counts('superposition'), 15)
+plot_histogram_file('result1.svg', result.get_counts('ghz'))
+plot_histogram_file('result2.svg', result.get_counts('superposition'), 15)

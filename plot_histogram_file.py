@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import linalg as la
 
-def plot_histogram_local(filename, data, number_to_keep=False):
+def plot_histogram_file(filename, data, number_to_keep=False):
     """Plot a histogram of data.
     data is a dictionary of  {'000': 5, '010': 113, ...}
     number_to_keep is the number of terms to plot and rest is made into a
