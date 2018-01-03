@@ -5,15 +5,15 @@ import Qconfig
 
 from plot_histogram_file import *
 
-backend = 'local_qasm_simulator'
+backend = 'ibmqx2'
 shots = 1024    # the number of shots in the experiment 
 
 program = QuantumProgram()
-#program.set_api(Qconfig.APItoken, Qconfig.config['url']) # set the APIToken and API url
+program.set_api(Qconfig.APItoken, Qconfig.config['url']) # set the APIToken and API url
 
 # Creating registers
-q_register = program.create_quantum_register('q_register', 5)
-c_register = program.create_classical_register('c_register', 5)
+q_register = program.create_quantum_register('q_register', 1)
+c_register = program.create_classical_register('c_register', 1)
 
 # Quantum circuit ground 
 qc_ground = program.create_circuit('ground', [q_register], [c_register])
