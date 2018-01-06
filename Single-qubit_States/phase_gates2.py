@@ -15,7 +15,6 @@ backend = 'local_qasm_simulator' # the backend to run on
 shots = 1024    # the number of shots in the experiment 
 
 program = QuantumProgram()
-#program.set_api(Qconfig.APItoken, Qconfig.config["url"]) # set the APIToken and API url
 
 # c_registereating registers
 q_register = program.create_quantum_register("q_register", 1)
@@ -24,13 +23,11 @@ circuits = []
 
 phase_vector = range(0,100)
 for phase_index in phase_vector:
-    phase_shift = phase_index - 50
-    phase = 2 * np.pi * phase_shift / 50
+    phase_shift = phase_index-50
+    phase = 2*np.pi*phase_shift/50
     circuit_name = "phase_gate_%d"%phase_index
     qc_phase_gate = program.create_circuit(circuit_name, [q_register], [c_register])
-    qc_phase_gate.h(q_register)
-    qc_phase_gate.u1(phase, q_register)
-    qc_phase_gate.h(q_register)
+    qc_phase_gate.u3(phase,0,np.pi, q_register)
     qc_phase_gate.measure(q_register[0], c_register[0])
     circuits.append(circuit_name)
 
@@ -47,8 +44,8 @@ for phase_index in phase_vector:
         probz.append(-1)
 
 fig, ax = plt.subplots()
+plt.plot(phase_value, probz, 'b',0.5,0,'ko',1,-1,'go',-0.5,0,'kx',-1,-1,'gx')
 plt.xlabel('Phase value (Pi)')
-plt.ylabel('Eigenvalue of X')
-plt.plot(phase_value, probz, 'b',0.25,1/np.sqrt(2),'ro',0.5,0,'ko',1,-1,'go',-0.25,1/np.sqrt(2),'rx',-0.5,0,'kx',-1,-1,'gx')
+plt.ylabel('Eigenvalue of Z')
 
-fig.savefig('phase_gates.svg')
+fig.savefig('phase_gates2.svg')
