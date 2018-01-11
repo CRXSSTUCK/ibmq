@@ -7,6 +7,10 @@ import Qconfig
 
 from plot_histogram_file import *
 
+backend = 'local_qasm_simulator' # the device to run on
+#backend = 'ibmqx2' # the backend to run on
+shots = 1024    # the number of shots in the experiment 
+
 # 2 - qubits 
 shots = 8192
 backend = 'ibmqx2'
